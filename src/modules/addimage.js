@@ -780,8 +780,12 @@
                 }
                 format = this.getImageFileTypeByImageData(imageData, format);
 
-                if(!isImageTypeSupported(format))
+                if(!isImageTypeSupported(format)) {
+                    if (format == 'UNKNOWN') {
+                      return this;
+                    }
                     throw new Error('addImage does not support files of type \''+format+'\', please ensure that a plugin for \''+format+'\' support is added.');
+                }
 
                 /**
                  * need to test if it's more efficient to convert all binary strings
